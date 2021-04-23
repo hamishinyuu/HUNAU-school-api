@@ -31,14 +31,15 @@ class Score(BaseSchoolApi):
         except RequestException:
             msg = '获取成绩请求参数失败'
             raise ScoreException(self.school_code, msg)
-
         payload = {
+            '__EVENTTARGET': '',
+            '__EVENTARGUMENT': '',
             '__VIEWSTATE': view_state,
-            'Button2': '在校学习成绩查询',
-            'btn_zcj': '历年成绩',
-            'btnCx': ' 查  询 ',
+            'hidLanguage': '',
             'ddlXN': '',
-            'ddlXQ': ''
+            'ddlXQ': '',
+            'ddl_kcxz': '',
+            'btn_zcj': '历年成绩'
         }
         try:
             res = self._post(score_url, data=payload, **kwargs)
@@ -50,7 +51,6 @@ class Score(BaseSchoolApi):
         tip = get_alert_tip(res.text)
         if tip:
             raise ScoreException(self.school_code, tip)
-
         return ScoreParse(self.school_code, res.text, use_api).get_score(score_year, score_term)
 
 
@@ -67,7 +67,6 @@ class ScoreParse():
         table = self.soup.find("table", {"id": re.compile("Datagrid1", re.IGNORECASE)})
         if not table:
             raise ScoreException(self.school_code, '获取成绩信息失败')
-
         rows = table.find_all('tr')
         rows.pop(0)
         self.score_info = {}
