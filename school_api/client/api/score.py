@@ -72,10 +72,11 @@ class ScoreParse():
         self.score_info = {}
         for row in rows:
             cells = row.find_all("td")
-            # 学年学期
+            # 学年 学期 课程代码 课程名称 课程性质 课程归属 学分 绩点 0-7
+            # 平时、期中、期末、实验、总成绩 8-12
+            # 辅修标记 补考成绩 重修成绩 开课学院 备注 重修标记 13-18
             year = cells[0].text
             term = cells[1].text
-            # 课程名
             lesson_name = cells[3].text.strip()
             credit = cells[6].text.strip() or 0
             point = cells[7].text.strip() or 0
