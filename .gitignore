@@ -5,6 +5,7 @@ test*.py
 .pytest_cache/
 CheckCode.gif
 .coverage
+.idea
 
 # Packages
 *.egg
