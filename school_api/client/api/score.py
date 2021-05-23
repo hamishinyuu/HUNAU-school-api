@@ -72,30 +72,43 @@ class ScoreParse():
         self.score_info = {}
         for row in rows:
             cells = row.find_all("td")
-            # 学年 学期 课程代码 课程名称 课程性质 课程归属 学分 绩点 0-7
-            # 平时、期中、期末、实验、总成绩 8-12
-            # 辅修标记 补考成绩 重修成绩 开课学院 备注 重修标记 13-18
+            # TODO: 检查实验成绩 辅修标记 补考成绩 重修成绩 备注 重修标记是否有用
+            # 学年 学期 课程代码、名称、性质
             year = cells[0].text
             term = cells[1].text
+            lesson_identifier = cells[2].text
             lesson_name = cells[3].text.strip()
+            lesson_type = cells[4].text
+            # 学分 绩点
             credit = cells[6].text.strip() or 0
             point = cells[7].text.strip() or 0
-            score = cells[8].text.strip() or 0
+
+            # 有其他成绩内容则输出
+            daily_score = cells[8].text
+            mid_score = cells[9].text
+            if daily_score != '\xa0':
+                # 平时成绩
+                score_dict['daily'] = self.handle_data(daily_score)
+            if mid_score != '\xa0':
+                # 期中成绩
+                score_dict['mid'] = self.handle_data(mid_score)
+            # 期末、总成绩
+            end_score = cells[10].text.strip() or 0
+            final_score = cells[12].text.strip() or 0
+
+            # 开课学院
+            college = cells[16].text.strip()
             score_dict = {
-                "lesson_name": lesson_name,
+                "name": lesson_name,
+                "identifier": lesson_identifier,
+                "type": lesson_type,
                 "credit": float(credit),
                 "point": float(point),
-                "score": self.handle_data(score)
+                "end": self.handle_data(end_score),
+                "score": self.handle_data(final_score),
+                "college": college
             }
-            # 有其他成绩内容则输出
-            makeup_score = cells[10].text
-            retake_score = cells[11].text
-            if makeup_score != '\xa0':
-                # 补考成绩
-                score_dict['bkcj'] = makeup_score
-            if retake_score != '\xa0':
-                # 重修成绩
-                score_dict['cxcj'] = retake_score
+
             # 组装数组格式的数据备用
             self.score_info[year] = self.score_info.get(year, {})
             self.score_info[year][term] = self.score_info[year].get(term, [])
