@@ -32,8 +32,7 @@ class Schedule(BaseSchoolApi):
             else schedule_type or ScheduleType.PERSON
         self.schedule_year = schedule_year
         self.schedule_term = str(schedule_term) if schedule_term else schedule_term
-        self.schedule_url = self.school_url["SCHEDULE_URL"][self.schedule_type]
-
+        self.schedule_url = self.school_url["SCHEDULE_URL"]
         if self.user.user_type != UserType.DEPT:
             self.schedule_url += self.user.account
             data = self._get_api(**kwargs)

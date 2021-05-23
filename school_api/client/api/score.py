@@ -21,7 +21,7 @@ class Score(BaseSchoolApi):
         :param kwargs: requests模块参数
         return
         '''
-        score_url = self.school_url['SCORE_URL'][use_api] + self.user.account
+        score_url = self.school_url['SCORE_URL'] + self.user.account
 
         try:
             view_state = self._get_view_state(score_url, **kwargs)
