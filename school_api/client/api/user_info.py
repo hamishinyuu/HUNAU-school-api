@@ -43,7 +43,7 @@ class UserlInfoParse():
         class_name = table.find(id="lbl_xzb").text
         faculty = table.find(id="lbl_xy").text
         specialty = table.find(id="lbl_zymc").text
-        enrol_time = table.find(id="lbl_rxrq").text
+        enroll_time = table.find(id="lbl_rxrq").text
         education_level = table.find(id="lbl_CC").text
         eductional_systme = table.find(id="lbl_xz").text
 
@@ -68,7 +68,7 @@ class UserlInfoParse():
             "faculty": faculty,
             "specialty": specialty,
             "hometown": hometown,
-            "enrol_time": enrol_time.replace('/', '-'),
+            "enroll_time": enroll_time.replace('/', '-'),
             "education_level": education_level,
             "eductional_systme": eductional_systme,
             "id_card": id_card
