@@ -11,16 +11,16 @@ from school_api.exceptions import ScoreException
 
 
 class Score(BaseSchoolApi):
-    ''' 学生成绩获取 '''
+    """ 学生成绩获取 """
 
     def get_score(self, score_year=None, score_term=None, use_api=0, **kwargs):
-        ''' 成绩信息 获取入口
+        """ 成绩信息 获取入口
         :param score_year: 成绩学年
         :param score_term: 成绩学期
         :param use_api:    0.接口1, 1.接口2, 2.接口3 ...
         :param kwargs: requests模块参数
         return
-        '''
+        """
         score_url = self.school_url['SCORE_URL'] + self.user.account
 
         try:
@@ -55,8 +55,8 @@ class Score(BaseSchoolApi):
         return ScoreParse(self.school_code, res.text, use_api).get_score(score_year, score_term)
 
 
-class ScoreParse():
-    ''' 成绩页面解析模块 '''
+class ScoreParse:
+    """ 成绩页面解析模块 """
 
     def __init__(self, school_code, html, use_api):
         self.school_code = school_code
@@ -96,7 +96,7 @@ class ScoreParse():
 
             # 输出不为空的成绩
             dict_keys = ['daily', 'mid', 'end', 'exp', 'score']
-            for cells_num in range(8,13):
+            for cells_num in range(8, 13):
                 if cells[cells_num].text != '\xa0':
                     # 列表起始索引为0
                     score_dict[dict_keys[cells_num-8]] = self.handle_data(cells[cells_num].text)
@@ -107,7 +107,7 @@ class ScoreParse():
             self.score_info[year][term].append(score_dict)
 
     def get_score(self, year, term):
-        ''' 返回成绩信息json格式 '''
+        """ 返回成绩信息json格式 """
         try:
             if not self.score_info:
                 raise KeyError
