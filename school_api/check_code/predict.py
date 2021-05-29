@@ -23,9 +23,9 @@ class CheckCode(object):
         self.img = None
 
     def photo_to_text(self):
-        '''
+        """
         图片转数据
-        '''
+        """
         x_size, y_size = self.img.size
         y_size -= 5
         piece = (x_size - 22) // 8
@@ -43,9 +43,9 @@ class CheckCode(object):
         return photo_data
 
     def verify(self, img_stream):
-        '''
+        """
         将图片转成numpy数组数据 与 训练好的模型 进行匹配
-        '''
+        """
         obj = BytesIO(img_stream)
         img = Image.open(obj).convert("L")
         self.img = self.denoise_img(img)
@@ -58,7 +58,7 @@ class CheckCode(object):
 
     @staticmethod
     def denoise_img(img):
-        '''图片降噪处理'''
+        """图片降噪处理"""
         img2 = Image.new("L", img.size, 255)
         for x in range(img.size[1]):
             for y in range(img.size[0]):
