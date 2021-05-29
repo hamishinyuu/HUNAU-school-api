@@ -6,7 +6,7 @@ The repository for my work created in Hunan Agricultural University.
 
 **为湖南农业大学做了适应性修改，此版本可能只适用于湖南农业大学正方教务系统。**
 
-[![Build Status](https://travis-ci.org/dairoot/school-api.svg?branch=master)](https://travis-ci.org/dairoot/school-api)
+[![Build Status](https://travis-ci.org/hamishinyuu/HUNAU-school-api.svg?branch=master)](https://travis-ci.org/hamishinyuu/HUNAU-school-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dairoot/school-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dairoot/school-api/?branch=master)
 [![codecov](https://codecov.io/gh/dairoot/school-api/branch/master/graph/badge.svg)](https://codecov.io/gh/dairoot/school-api)
 [![pypi](https://img.shields.io/pypi/v/school-api.svg)](https://pypi.org/project/school-api/)
