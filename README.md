@@ -1,3 +1,7 @@
+# HUNAU-Data-Construction
+
+The repository for my work created in Hunan Agricultural University.
+
 正方系统 Python SDK。
 
 **为湖南农业大学做了适应性修改，此版本可能只适用于湖南农业大学正方教务系统。**
