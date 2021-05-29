@@ -8,7 +8,7 @@ The repository for my work created in Hunan Agricultural University.
 
 [![Build Status](https://travis-ci.com/hamishinyuu/HUNAU-school-api.svg?branch=master)](https://travis-ci.com/hamishinyuu/HUNAU-school-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hamishinyuu/HUNAU-school-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hamishinyuu/HUNAU-school-api/?branch=master)
-[![School](https://img.shields.io/badge/-HUNAU-%23008268)]
+[![School](https://img.shields.io/badge/-HUNAU-%23008268)](https://www.hunau.edu.cn/)
 
 ## Usage
 ```Shell
