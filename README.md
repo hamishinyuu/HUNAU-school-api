@@ -9,8 +9,6 @@ The repository for my work created in Hunan Agricultural University.
 [![Build Status](https://travis-ci.org/hamishinyuu/HUNAU-school-api.svg?branch=master)](https://travis-ci.org/hamishinyuu/HUNAU-school-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hamishinyuu/HUNAU-school-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hamishinyuu/HUNAU-school-api/?branch=master)
 [![codecov](https://codecov.io/gh/hamishinyuu/HUNAU-school-api/branch/master/graph/badge.svg?token=JPQYKH5C38)](https://codecov.io/gh/hamishinyuu/HUNAU-school-api)
-[![pypi](https://img.shields.io/pypi/v/school-api.svg)](https://pypi.org/project/school-api/)
-[![Downloads](https://pepy.tech/badge/school-api)](https://pepy.tech/project/school-api)
 
 ## Usage
 ```Shell
