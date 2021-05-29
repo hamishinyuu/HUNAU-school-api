@@ -38,40 +38,25 @@ class UserlInfoParse():
         if not table:
             raise UserInfoException(self.school_code, '获取学生用户信息失败')
 
+        student_no = table.find(id="xh").text
         real_name = table.find(id="xm").text
-        grade = table.find(id="lbl_dqszj").text
+        # 当前所在级 grade = table.find(id="lbl_dqszj").text
         class_name = table.find(id="lbl_xzb").text
-        facility = table.find(id="lbl_xy").text
+        college = table.find(id="lbl_xy").text
         speciality = table.find(id="lbl_zymc").text
-        enroll_time = table.find(id="lbl_rxrq").text
-        education_level = table.find(id="lbl_CC").text
-        eductional_system = table.find(id="lbl_xz").text
-
-        sfzh = table.find(id="lbl_sfzh")
-        id_card = sfzh.text if sfzh else table.find(id="sfzh")['value']
-
-        csrq = table.find(id="lbl_csrq")
-        birth_date = csrq.text if csrq else table.find(id="csrq")['value']
-
-        lydq = table.find(id="lbl_lydq")
-        hometown = lydq.text if lydq else table.find(id="lydq")['value']
-
-        xb = table.find(id='XB')
-        sex = xb.find('option', attrs={'selected': 'selected'}).text if xb else table.find(id="lbl_xb").text
+        # 入学时间 enroll_time = table.find(id="lbl_rxrq").text
+        # 学习层次 education_level = table.find(id="lbl_CC").text
+        # 学制 educational_system = table.find(id="lbl_xz").text
+        # 身份证号 id_card = table.find(id="lbl_sfzh").text
+        # 出生日期 birth_date = table.find(id="lbl_csrq").text
+        # 性别 sex = table.find(id="lbl_xb").text
 
         self.data = {
+            "student_no": student_no,
             "real_name": real_name,
-            "sex": sex,
-            "grade": grade,
-            "birth_date": None if birth_date == 'NULL' else birth_date.replace('/', '-'),
             "class_name": class_name,
-            "facility": facility,
+            "college": college,
             "speciality": speciality,
-            "hometown": hometown,
-            "enroll_time": enroll_time.replace('/', '-'),
-            "education_level": education_level,
-            "eductional_system": eductional_system,  # 学制
-            "id_card": id_card
         }
 
     def _html_parse_of_teacher(self):
