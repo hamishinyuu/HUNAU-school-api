@@ -10,6 +10,10 @@ The repository for my work created in Hunan Agricultural University.
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hamishinyuu/HUNAU-school-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hamishinyuu/HUNAU-school-api/?branch=master)
 [![School](https://img.shields.io/badge/-HUNAU-%23008268)](https://www.hunau.edu.cn/)
 
+[![hamishinyuu/HUNAU-school-api](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/hamishinyuu/HUNAU-school-api)
+[![hamishinyuu/HUNAU-school-api](https://forthebadge.com/images/badges/made-with-python.svg)](https://github.com/hamishinyuu/HUNAU-school-api)
+[![hamishinyuu/HUNAU-school-api](https://forthebadge.com/images/badges/uses-git.svg)](https://github.com/hamishinyuu/HUNAU-school-api)
+
 ## Usage
 ```Shell
 $ pip install School-Api
