@@ -42,7 +42,7 @@ class UserlInfoParse():
         grade = table.find(id="lbl_dqszj").text
         class_name = table.find(id="lbl_xzb").text
         faculty = table.find(id="lbl_xy").text
-        specialty = table.find(id="lbl_zymc").text
+        speciality = table.find(id="lbl_zymc").text
         enroll_time = table.find(id="lbl_rxrq").text
         education_level = table.find(id="lbl_CC").text
         eductional_system = table.find(id="lbl_xz").text
@@ -66,7 +66,7 @@ class UserlInfoParse():
             "birth_date": None if birth_date == 'NULL' else birth_date.replace('/', '-'),
             "class_name": class_name,
             "faculty": faculty,
-            "specialty": specialty,
+            "speciality": speciality,
             "hometown": hometown,
             "enroll_time": enroll_time.replace('/', '-'),
             "education_level": education_level,
