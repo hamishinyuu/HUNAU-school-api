@@ -4,21 +4,25 @@ from __future__ import absolute_import, unicode_literals
 from school_api.exceptions import SchoolException, LoginException, PermissionException
 
 
-class UserType():
-    ''' 用户类型参数 '''
-    STUDENT = 0
-    TEACHER = 1
-    DEPT = 2
+class UserType:
+    """ 用户类型参数 """
+
+    def __init__(self):
+        self.STUDENT = 0
+        self.TEACHER = 1
+        self.DEPT = 2
 
 
-class ScheduleType():
-    ''' 课表类型参数 '''
-    PERSON = 0
-    CLASS = 1
+class ScheduleType:
+    """ 课表类型参数 """
+
+    def __init__(self):
+        self.PERSON = 0
+        self.CLASS = 1
 
 
-class LoginFail():
-    ''' 登录失败返回错误信息 '''
+class LoginFail:
+    """ 登录失败返回错误信息 """
 
     def __init__(self, tip=''):
         self.tip = tip
@@ -50,8 +54,8 @@ def error_handle(func):
     return wrapper
 
 
-class ApiPermissions():
-    ''' 接口权限判断 '''
+class ApiPermissions:
+    """ 接口权限判断 """
 
     def __init__(self, permission_list):
         self.permission_list = permission_list
@@ -66,7 +70,7 @@ class ApiPermissions():
 
 
 def get_time_list(class_time):
-    ''' 上课时间处理 '''
+    """ 上课时间处理 """
     time_list = {1: [], 2: [], 3: [], 4: []}
     time_text = "{} ~ {}"
     for index, times in enumerate(class_time):
