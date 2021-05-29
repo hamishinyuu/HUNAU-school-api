@@ -45,8 +45,9 @@ class SchoolClient(object):
         :param requests模块参数
         return 用户实例
         """
+
         use_cookie_login = kwargs.pop("use_login_cookie", use_cookie_login)  # 兼容低版本
-        user_type = kwargs.pop('user_type', UserType.STUDENT)
+        user_type = kwargs.pop('user_type', UserType().STUDENT)
         user = UserClient(self, account, password, user_type)
         user = user.user_login(use_cookie_login, **kwargs)
         return user
@@ -59,6 +60,7 @@ class UserClient(BaseUserClient):
     info = UserInfo()
     schedule = Schedule()
     place_schedule = PlaceSchedule()
+    UserType = UserType()
 
     @error_handle
     def user_login(self, use_cookie_login, **kwargs):
