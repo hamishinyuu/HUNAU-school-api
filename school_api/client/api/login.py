@@ -13,15 +13,15 @@ from school_api.utils import to_binary, to_text
 
 
 class Login(BaseSchoolApi):
-    ''' 登录模块 '''
+    """ 登录模块 """
 
     def get_login(self, school, **kwargs):
-        ''' 登录入口 与 异常处理 '''
+        """ 登录入口 与 异常处理 """
         args = (school.login_url, school.exist_verify)
         try:
             res = self._get_api(*args, **kwargs)
-        except OtherException as reqe:
-            raise LoginException(self.school_code, to_text(str(reqe)))
+        except OtherException as req:
+            raise LoginException(self.school_code, to_text(str(req)))
 
         except RequestException:
             if school.proxies and not self.user.proxy_state:
@@ -56,7 +56,7 @@ class Login(BaseSchoolApi):
         return True
 
     def _handle_login_result(self, res):
-        ''' 处理页面弹框信息 '''
+        """ 处理页面弹框信息 """
         if res is True:
             # 登录成功
             return
@@ -68,12 +68,12 @@ class Login(BaseSchoolApi):
         raise LoginException(self.school_code, '教务系统请求异常')
 
     def _get_login_payload(self, login_url, **kwargs):
-        ''' 获取登录页面的 请求参数'''
+        """ 获取登录页面的 请求参数"""
         try:
             kwargs['timeout'] = 3
             res = self._get(login_url, **kwargs)
-        except TooManyRedirects as reqe:
-            res = self._get(reqe.response.headers["Location"], **kwargs)
+        except TooManyRedirects as req:
+            res = self._get(req.response.headers["Location"], **kwargs)
 
         except RequestException:
             # 首次请求可能出现 Connection aborted
