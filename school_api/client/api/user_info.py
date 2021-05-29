@@ -56,7 +56,7 @@ class UserlInfoParse():
             "real_name": real_name,
             "class_name": class_name,
             "college": college,
-            "speciality": speciality,
+            "speciality": speciality
         }
 
     def _html_parse_of_teacher(self):
