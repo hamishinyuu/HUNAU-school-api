@@ -7,18 +7,16 @@ from school_api.exceptions import SchoolException, LoginException, PermissionExc
 class UserType:
     """ 用户类型参数 """
 
-    def __init__(self):
-        self.STUDENT = 0
-        self.TEACHER = 1
-        self.DEPT = 2
+    STUDENT = 0
+    TEACHER = 1
+    DEPT = 2
 
 
 class ScheduleType:
     """ 课表类型参数 """
 
-    def __init__(self):
-        self.PERSON = 0
-        self.CLASS = 1
+    PERSON = 0
+    CLASS = 1
 
 
 class LoginFail:

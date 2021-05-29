@@ -21,19 +21,19 @@ class Schedule(BaseSchoolApi):
     schedule_url = None
 
     def get_schedule(self, schedule_year=None, schedule_term=None, schedule_type=None, **kwargs):
-        """ 课表信息 获取入口
+        ''' 课表信息 获取入口
         :param schedule_year: 课表学年
         :param schedule_term: 课表学期
         :param schedule_type: 0.个人课表 1.班级课表
         :param kwargs: requests模块参数
         :return:
-        """
+        '''
         self.schedule_type = ScheduleType.CLASS if self.user.user_type \
-            else schedule_type or ScheduleType().PERSON
+            else schedule_type or ScheduleType.PERSON
         self.schedule_year = schedule_year
         self.schedule_term = str(schedule_term) if schedule_term else schedule_term
         self.schedule_url = self.school_url["SCHEDULE_URL"]
-        if self.user.user_type != UserType().DEPT:
+        if self.user.user_type != UserType.DEPT:
             self.schedule_url += self.user.account
             data = self._get_api(**kwargs)
         else:
@@ -79,7 +79,7 @@ class Schedule(BaseSchoolApi):
         return schedule
 
     def _get_api_by_bm(self, class_name, **kwargs):
-        """ 部门教师 查询学生班级课表 共3个请求"""
+        ''' 部门教师 查询学生班级课表 共3个请求'''
 
         # steps 1: 获取课表页面 参数信息
         try:
@@ -106,7 +106,7 @@ class Schedule(BaseSchoolApi):
         return schedule
 
     def _get_payload(self, html):
-        """ 获取课表post 的参数 """
+        ''' 获取课表post 的参数 '''
         view_state = get_view_state_from_html(html)
         payload = {
             '__VIEWSTATE': view_state,
@@ -116,7 +116,7 @@ class Schedule(BaseSchoolApi):
         return payload
 
     def _get_payload_by_bm(self, html, class_name):
-        """ 提取页面参数用于请求课表 """
+        ''' 提取页面参数用于请求课表 '''
         pre_soup = BeautifulSoup(html, "html.parser")
         view_state = pre_soup.find(attrs={"name": "__VIEWSTATE"})['value']
         schedule_id_list = pre_soup.find(id='kb').find_all('option')
