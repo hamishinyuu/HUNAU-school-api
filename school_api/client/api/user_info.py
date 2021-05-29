@@ -21,10 +21,10 @@ class UserInfo(BaseSchoolApi):
         except RequestException:
             raise UserInfoException(self.school_code, '获取用户信息失败')
 
-        return UserlInfoParse(self.school_code, self.user.user_type, res.text).user_info
+        return UserInfoParse(self.school_code, self.user.user_type, res.text).user_info
 
 
-class UserlInfoParse():
+class UserInfoParse():
     """ 信息页面解析模块 """
 
     def __init__(self, school_code, user_type, html):
