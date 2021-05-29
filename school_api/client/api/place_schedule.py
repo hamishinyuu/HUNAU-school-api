@@ -25,7 +25,7 @@ class PlaceSchedule(BaseSchoolApi):
                      filter_building_list=None,
                      filter_classroom_type_list=None,
                      **kwargs):
-        '''
+        """
         课表信息 获取入口
         生成器一旦报错则将退出：https://codeday.me/bug/20180125/124136.html
         除了解析异常其他报错均不抛出
@@ -40,10 +40,10 @@ class PlaceSchedule(BaseSchoolApi):
         :param filter_classroom_type_list: 排除教室类别列表
         :param kwargs: requests 参数
         :yield: 生成器
-        '''
+        """
 
         self.schedule_url = self.school_url['PLACE_SCHEDULE_URL'] + \
-                            urlparse.quote(self.user.account.encode('gb2312'))
+            urlparse.quote(self.user.account.encode('gb2312'))
 
         if not self._update_payload(**kwargs):
             yield {'error': "获取教学场地课表失败"}
@@ -146,7 +146,7 @@ class PlaceSchedule(BaseSchoolApi):
 
     @staticmethod
     def _get_payload(html):
-        ''' 获取课表提交参数 '''
+        """ 获取课表提交参数 """
         pre_soup = BeautifulSoup(html, "html.parser")
         view_state = pre_soup.find(attrs={"name": "__VIEWSTATE"})['value']
         searchbox = pre_soup.find("div", {"class": "searchbox"})
@@ -179,7 +179,7 @@ class PlaceSchedule(BaseSchoolApi):
 
     @staticmethod
     def _is_skip(name, name_list, filter_name_list=None):
-        ''' 检查是否跳过 '''
+        """ 检查是否跳过 """
         if (name_list and name not in name_list) or (filter_name_list and name in filter_name_list):
             return True
         return None
