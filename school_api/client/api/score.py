@@ -4,7 +4,7 @@ from __future__ import absolute_import, unicode_literals
 import re
 from bs4 import BeautifulSoup
 from requests import RequestException, TooManyRedirects
-
+import traceback
 from school_api.client.api.base import BaseSchoolApi
 from school_api.client.api.utils import get_alert_tip
 from school_api.exceptions import ScoreException
@@ -30,6 +30,7 @@ class Score(BaseSchoolApi):
             raise ScoreException(self.school_code, msg)
         except RequestException:
             msg = '获取成绩请求参数失败'
+            traceback.format_exc()
             raise ScoreException(self.school_code, msg)
         payload = {
             '__EVENTTARGET': '',
@@ -72,7 +73,7 @@ class ScoreParse():
         self.score_info = {}
         for row in rows:
             cells = row.find_all("td")
-            # TODO: 检查实验成绩 辅修标记 补考成绩 重修成绩 备注 重修标记是否有用
+            # TODO: 检查补考成绩 重修成绩 备注 重修标记是否有用
             # 学年 学期 课程代码、名称、性质
             year = cells[0].text
             term = cells[1].text
@@ -82,20 +83,6 @@ class ScoreParse():
             # 学分 绩点
             credit = cells[6].text.strip() or 0
             point = cells[7].text.strip() or 0
-
-            # 有其他成绩内容则输出
-            daily_score = cells[8].text
-            mid_score = cells[9].text
-            if daily_score != '\xa0':
-                # 平时成绩
-                score_dict['daily'] = self.handle_data(daily_score)
-            if mid_score != '\xa0':
-                # 期中成绩
-                score_dict['mid'] = self.handle_data(mid_score)
-            # 期末、总成绩
-            end_score = cells[10].text.strip() or 0
-            final_score = cells[12].text.strip() or 0
-
             # 开课学院
             college = cells[16].text.strip()
             score_dict = {
@@ -104,10 +91,15 @@ class ScoreParse():
                 "type": lesson_type,
                 "credit": float(credit),
                 "point": float(point),
-                "end": self.handle_data(end_score),
-                "score": self.handle_data(final_score),
                 "college": college
             }
+
+            # 输出不为空的成绩
+            dict_keys = ['daily', 'mid', 'end', 'exp', 'score']
+            for cells_num in range(8,13):
+                if cells[cells_num].text != '\xa0':
+                    # 列表起始索引为0
+                    score_dict[dict_keys[cells_num-8]] = self.handle_data(cells[cells_num].text)
 
             # 组装数组格式的数据备用
             self.score_info[year] = self.score_info.get(year, {})
