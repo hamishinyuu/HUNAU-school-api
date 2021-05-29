@@ -24,7 +24,7 @@ class UserInfo(BaseSchoolApi):
         return UserInfoParse(self.school_code, self.user.user_type, res.text).user_info
 
 
-class UserInfoParse():
+class UserInfoParse:
     """ 信息页面解析模块 """
 
     def __init__(self, school_code, user_type, html):
