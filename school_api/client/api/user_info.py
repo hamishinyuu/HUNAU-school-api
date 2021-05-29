@@ -7,11 +7,11 @@ from school_api.client.api.base import BaseSchoolApi
 from school_api.exceptions import UserInfoException
 
 
-class UserlInfo(BaseSchoolApi):
-    ''' 用户信息查询 部门教师不可用 '''
+class UserInfo(BaseSchoolApi):
+    """ 用户信息查询 部门教师不可用 """
 
     def get_info(self, **kwargs):
-        ''' 用户信息 获取入口 '''
+        """ 用户信息 获取入口 """
         info_url = self.school_url['INFO_URL'] + self.user.account
 
         try:
@@ -25,7 +25,7 @@ class UserlInfo(BaseSchoolApi):
 
 
 class UserlInfoParse():
-    ''' 信息页面解析模块 '''
+    """ 信息页面解析模块 """
 
     def __init__(self, school_code, user_type, html):
         self.data = {}
@@ -81,5 +81,5 @@ class UserlInfoParse():
 
     @property
     def user_info(self):
-        ''' 返回用户信息json格式 '''
+        """ 返回用户信息json格式 """
         return self.data

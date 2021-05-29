@@ -7,7 +7,7 @@ from school_api.client.base import BaseUserClient
 from school_api.client.api.score import Score
 from school_api.client.api.schedule import Schedule
 from school_api.client.api.place_schedule import PlaceSchedule
-from school_api.client.api.user_info import UserlInfo
+from school_api.client.api.user_info import UserInfo
 from school_api.client.utils import UserType, error_handle, ApiPermissions, get_time_list
 from school_api.session.memorystorage import MemoryStorage
 
@@ -56,7 +56,7 @@ class UserClient(BaseUserClient):
     ''' 用户实例 '''
 
     score = Score()
-    info = UserlInfo()
+    info = UserInfo()
     schedule = Schedule()
     place_schedule = PlaceSchedule()
 
