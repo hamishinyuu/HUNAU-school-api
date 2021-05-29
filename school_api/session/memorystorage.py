@@ -6,7 +6,7 @@ from school_api.utils import to_text
 
 
 class MemoryStorage(SessionStorage):
-    ''' 非持久化缓存 不推荐使用'''
+    """ 非持久化缓存 不推荐使用"""
 
     def __init__(self):
         self._data = {}
