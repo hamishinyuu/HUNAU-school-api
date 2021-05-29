@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
     @Time       : 2016 - 2018
     @Author     : dairoot
     @Email      : 623815825@qq.com
     @description: 课表解析
-'''
+"""
 from __future__ import absolute_import, unicode_literals
 
 import re
@@ -12,8 +12,8 @@ import six
 from bs4 import BeautifulSoup
 
 
-class BaseScheduleParse():
-    ''' 课表页面解析模块 '''
+class BaseScheduleParse:
+    """ 课表页面解析模块 """
 
     def __init__(self, html, time_list, schedule_type):
         self.schedule_year = ''
@@ -66,7 +66,7 @@ class BaseScheduleParse():
                 self.schedule_list[day].append(row_arr)
 
     def get_schedule_dict(self):
-        ''' 返回课表数据 字典格式 '''
+        """ 返回课表数据 字典格式 """
         all_schedule = [[], [], [], [], [], [], []]
         color = ['green', 'blue', 'purple', 'red', 'yellow']
 
@@ -96,7 +96,7 @@ class BaseScheduleParse():
         return schedule_data
 
     def _get_weeks_text(self, class_time):
-        ''' 课程周数文本 '''
+        """ 课程周数文本 """
         if not self.schedule_type:
             weeks_text = re.findall(r"{(.*)}", class_time)[0]
         else:
@@ -132,7 +132,7 @@ class BaseScheduleParse():
 
     @staticmethod
     def _get_td_course_info(text):
-        ''' 获取td标签的课程信息 '''
+        """ 获取td标签的课程信息 """
         text = re.sub(r'<[/]{0,1}font[^>]*?>', '', text)
         text = re.sub(r'^<br/>', '', text)
 
@@ -154,7 +154,7 @@ class BaseScheduleParse():
 
 
 class ScheduleParse(BaseScheduleParse):
-    ''' 课表节数合并 '''
+    """ 课表节数合并 """
 
     def __init__(self, html, time_list, schedule_type=0):
         BaseScheduleParse.__init__(self, html, time_list, schedule_type)
