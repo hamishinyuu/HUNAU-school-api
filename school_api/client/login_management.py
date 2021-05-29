@@ -15,7 +15,7 @@ class LoginManagement(object):
     login = Login()
 
     def session_management(self):
-        ''' 登录会话管理 '''
+        """ 登录会话管理 """
         login_session = None
         if self._get_login_session():
             session_expires_time = LOGIN_SESSION_SAVE_TIME - self._get_login_session_expires_time()
@@ -36,7 +36,7 @@ class LoginManagement(object):
         return login_session
 
     def save_login_session(self):
-        ''' 保存登录会话 '''
+        """ 保存登录会话 """
         key = self._get_login_session_key()
         cookie = self._http.cookies.get_dict()
         session = {
@@ -46,7 +46,7 @@ class LoginManagement(object):
         self.session.set(key, session, LOGIN_SESSION_SAVE_TIME)
 
     def _get_login_session(self):
-        ''' 获取登录会话 '''
+        """ 获取登录会话 """
         key = self._get_login_session_key()
         session = self.session.get(key)
         if not session:
@@ -57,7 +57,7 @@ class LoginManagement(object):
         return True
 
     def _del_login_session(self):
-        ''' 删除登录会话 '''
+        """ 删除登录会话 """
         key = self._get_login_session_key()
         self.session.delete(key)
         self._http.cookies.clear()
@@ -68,6 +68,6 @@ class LoginManagement(object):
         return self.session.expires_time(key)
 
     def _get_login_session_key(self):
-        ''' 获取缓存登录会话的key '''
+        """ 获取缓存登录会话的key """
         key = '{}:{}:{}:{}'.format(self.school.code, 'login_session', self.base_url, self.user.account)
         return key
