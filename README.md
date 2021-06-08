@@ -1,4 +1,4 @@
-# HUNAU-Data-Construction
+# HUNAU-school-api
 
 The repository for my work created in Hunan Agricultural University.
 
